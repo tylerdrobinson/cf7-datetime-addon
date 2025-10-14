@@ -18,7 +18,7 @@
  *
  * @package    CF7_DateTime_Addon
  * @subpackage CF7_DateTime_Addon/admin
- * @author     Tyler Robinson <support@example.com>
+ * @author     Tyler Robinson
  */
 class CF7_DateTime_Addon_Admin {
 
