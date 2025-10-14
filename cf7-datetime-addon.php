@@ -5,6 +5,7 @@
  * Description:       Adds modern date and time picker form tags to Contact Form 7 with Flatpickr enhancement and admin settings.
  * Version:           1.0.0
  * Author:            Tyler Robinson
+ * Author URI:        https://github.com/tylerdrobinson
  * License:           GPL-2.0+
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       cf7-datetime-addon
