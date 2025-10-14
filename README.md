@@ -256,7 +256,7 @@ For support, bug reports, or feature requests:
 
 - **GitHub Issues**: [Create an issue](https://github.com/tylerdrobinson/cf7-datetime-addon/issues)
 - **WordPress.org**: Post in the support forum
-- **Email**: support@example.com
+- **GitHub**: [@tylerdrobinson](https://github.com/tylerdrobinson)
 
 ## 📜 License
 
