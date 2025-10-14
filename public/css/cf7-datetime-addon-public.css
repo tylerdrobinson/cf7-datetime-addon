@@ -1,0 +1,402 @@
+/* CF7 Time Picker Addon - Modern CSS Styles */
+/* =========================================== */
+
+/* CSS Custom Properties for Theme Integration */
+:root {
+  /* Primary theme colors with fallbacks - Forest Green from original */
+  --rd-primary: var(--wp--preset--color--primary, #1F3B2A);
+  --rd-primary-hover: var(--wp--preset--color--primary-hover, #2a4d3a);
+  --rd-primary-light: var(--wp--preset--color--primary-light, rgba(31, 59, 42, 0.1));
+
+  /* Text colors */
+  --rd-text: var(--wp--preset--color--text, #333);
+  --rd-text-secondary: var(--wp--preset--color--text-secondary, #666);
+  --rd-text-muted: var(--wp--preset--color--text-muted, #999);
+
+  /* Background colors */
+  --rd-bg: var(--wp--preset--color--background, #fff);
+  --rd-bg-alt: var(--wp--preset--color--background-alt, #f8f9fa);
+  --rd-border: var(--wp--preset--color--border, #ddd);
+  --rd-border-focus: var(--rd-primary, #007cba);
+
+  /* Spacing */
+  --rd-spacing-xs: 0.25rem;
+  --rd-spacing-sm: 0.5rem;
+  --rd-spacing-md: 1rem;
+  --rd-spacing-lg: 1.5rem;
+  --rd-spacing-xl: 2rem;
+
+  /* Border radius - matching original 14px */
+  --rd-radius-sm: 4px;
+  --rd-radius-md: 6px;
+  --rd-radius-lg: 14px;
+
+  /* Shadows */
+  --rd-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --rd-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --rd-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+  /* Transitions */
+  --rd-transition: all 0.2s ease;
+}
+
+/* Form Container Styles */
+.wpcf7-form {
+  background: var(--rd-bg);
+  border-radius: var(--rd-radius-lg);
+  box-shadow: var(--rd-shadow-md);
+  overflow: hidden;
+}
+
+/* Card Layout - matching original responsive padding */
+.rd-card {
+  padding: 20px;
+  background: var(--rd-bg);
+  border: 1px solid #e5e7eb;
+  border-radius: var(--rd-radius-lg);
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+  margin-bottom: var(--rd-spacing-xl);
+}
+
+.rd-max {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+/* Typography - matching original sizing and spacing */
+.rd-title {
+  margin: 0 0 8px;
+  font-size: 1.375rem; /* ~22px */
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--rd-text);
+}
+
+.rd-intro {
+  margin: 0 0 18px;
+  color: #374151;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.rd-label {
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: block;
+  font-size: 1.05rem;
+  color: var(--rd-text);
+}
+
+.rd-help {
+  font-size: .92rem;
+  color: #6b7280;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* Grid Layout - matching original mobile-first approach */
+.rd-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+  margin-bottom: var(--rd-spacing-lg);
+}
+
+@media (min-width: 640px) {
+  .rd-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.rd-field-full {
+  grid-column: 1 / -1;
+}
+
+/* Field Styling */
+.rd-field {
+  margin-bottom: var(--rd-spacing-md);
+}
+
+.rd-field p {
+  margin: 0;
+}
+
+/* Form Controls Base Styles - matching original large touch targets */
+.wpcf7-form .rd-field input[type="text"],
+.wpcf7-form .rd-field input[type="date"],
+.wpcf7-form .rd-field input[type="time"],
+.wpcf7-form .rd-field input[type="datetime-local"],
+.wpcf7-form .rd-field input[type="email"],
+.wpcf7-form .rd-field input[type="url"],
+.wpcf7-form .rd-field .wpcf7-datepicker,
+.wpcf7-form .rd-field .wpcf7-timepicker,
+.wpcf7-form .rd-field .wpcf7-datetimepicker {
+  width: 100%;
+  font-size: 1rem;           /* 16px base */
+  line-height: 1.4;
+  padding: 14px 14px;        /* >=44px total height with borders */
+  border: 1px solid #cfd4dc;
+  border-radius: 14px;
+  background: #fff;
+  color: #111827;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+.wpcf7-form .rd-field input::placeholder {
+  color: #9ca3af;
+}
+
+.wpcf7-form .rd-field input:focus {
+  outline: none;
+  border-color: #1F3B2A;
+  box-shadow: 0 0 0 4px rgba(31,59,42,.12);
+}
+
+/* Date Picker Specific Styling */
+.wpcf7-datepicker {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--rd-spacing-md) center;
+  background-size: 16px;
+  padding-right: calc(var(--rd-spacing-md) + 24px);
+}
+
+.wpcf7-datepicker:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%231F3B2A' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/%3E%3C/svg%3E");
+}
+
+/* Time Picker Specific Styling */
+.wpcf7-timepicker {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z'/%3E%3Cpath d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--rd-spacing-md) center;
+  background-size: 16px;
+  padding-right: calc(var(--rd-spacing-md) + 24px);
+}
+
+.wpcf7-timepicker:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%231F3B2A' viewBox='0 0 16 16'%3E%3Cpath d='M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z'/%3E%3Cpath d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z'/%3E%3C/svg%3E");
+}
+
+/* DateTime Picker Specific Styling */
+.wpcf7-datetimepicker {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--rd-spacing-md) center;
+  background-size: 16px;
+  padding-right: calc(var(--rd-spacing-md) + 24px);
+}
+
+.wpcf7-datetimepicker:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%231F3B2A' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/%3E%3C/svg%3E");
+}
+
+/* Checkbox base styling - handled by chips design below */
+
+/* Chips Container for Checkboxes - Original Pill Picker Design */
+.rd-chips .wpcf7-list-item {
+  display: inline-block;
+  margin: 8px 8px 0 0;
+}
+
+.rd-chips input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+} /* keep in DOM for a11y */
+
+.rd-chips .wpcf7-list-item-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px; /* thumb friendly */
+  padding: 10px 14px;
+  border: 1px solid #cfd4dc;
+  border-radius: 9999px;
+  background: #f9fafb;
+  color: #111827;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background .2s, border-color .2s, color .2s, transform .02s;
+}
+
+.rd-chips .wpcf7-list-item-label:active {
+  transform: translateY(1px);
+}
+
+.rd-chips input[type="checkbox"]:checked + .wpcf7-list-item-label {
+  border-color: #1F3B2A;
+  background: #1F3B2A; /* Deep forest green from your palette */
+  color: #fff;
+}
+
+.rd-chips .wpcf7-list-item-label:hover {
+  border-color: #1F3B2A;
+}
+
+/* Submit Button - matching original forest green design */
+.rd-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 1.0625rem; /* ~17px for older eyes */
+  font-weight: 800;
+  border: none;
+  border-radius: 14px;
+  background: #1F3B2A;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity .15s ease, transform .02s ease;
+  margin-top: 8px;
+}
+
+@media (min-width: 480px) {
+  .rd-submit {
+    width: auto;
+    min-width: 240px;
+  }
+}
+
+.rd-submit:hover {
+  opacity: .96;
+}
+
+.rd-submit:active {
+  transform: translateY(1px);
+}
+
+/* Flatpickr Calendar Styling */
+.flatpickr-calendar {
+  background: var(--rd-bg);
+  border: 1px solid var(--rd-border);
+  border-radius: var(--rd-radius-md);
+  box-shadow: var(--rd-shadow-lg);
+  font-family: inherit;
+}
+
+.flatpickr-calendar .flatpickr-day {
+  color: var(--rd-text);
+  border-radius: var(--rd-radius-sm);
+  transition: var(--rd-transition);
+}
+
+.flatpickr-calendar .flatpickr-day:hover,
+.flatpickr-calendar .flatpickr-day:focus {
+  background: var(--rd-primary-light);
+  color: var(--rd-primary);
+}
+
+.flatpickr-calendar .flatpickr-day.selected,
+.flatpickr-calendar .flatpickr-day.selected:hover {
+  background: var(--rd-primary);
+  color: white;
+}
+
+.flatpickr-calendar .flatpickr-monthDropdown-months,
+.flatpickr-calendar .flatpickr-weekday {
+  color: var(--rd-text-secondary);
+  font-weight: 600;
+}
+
+.flatpickr-calendar .flatpickr-current-month {
+  color: var(--rd-text);
+  font-weight: 600;
+}
+
+.flatpickr-calendar .flatpickr-time {
+  border-top: 1px solid var(--rd-border);
+}
+
+.flatpickr-calendar .flatpickr-time input {
+  border: 1px solid var(--rd-border);
+  border-radius: var(--rd-radius-sm);
+  color: var(--rd-text);
+}
+
+.flatpickr-calendar .flatpickr-time input:focus {
+  border-color: var(--rd-primary);
+  box-shadow: 0 0 0 2px var(--rd-primary-light);
+}
+
+.flatpickr-calendar .flatpickr-am-pm {
+  color: var(--rd-text);
+  font-weight: 500;
+}
+
+/* Validation States - matching original */
+.wpcf7-not-valid {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 4px rgba(220,38,38,.10) !important;
+}
+
+.wpcf7-form .wpcf7-not-valid-tip {
+  color: #b91c1c;
+  font-size: .9rem;
+  margin-top: 6px;
+  display: block;
+}
+
+/* Spinner for Submit Button */
+.wpcf7-submit.has-spinner::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: var(--rd-spacing-sm);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Card responsive padding - matching original */
+@media (min-width: 480px) {
+  .rd-card {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .rd-card {
+    padding: 28px;
+  }
+}
+
+/* CF7 response messages - matching original */
+.wpcf7 form .wpcf7-response-output {
+  border-radius: 14px;
+  font-size: 1rem;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .rd-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .rd-submit {
+    display: none;
+  }
+}
