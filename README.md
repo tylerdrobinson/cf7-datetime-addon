@@ -284,4 +284,20 @@ GNU General Public License for more details.
 
 ---
 
+## 🏗️ Building & Distribution
+
+### Creating a Distribution ZIP
+
+To build a clean ZIP file for distribution:
+
+```bash
+./tools/package.sh
+```
+
+This creates `dist/cf7-datetime-addon-{version}.zip` with all development files excluded.
+
+See `tools/README.md` for detailed build instructions.
+
+---
+
 **Made with ❤️ for the WordPress community**

@@ -1,0 +1,30 @@
+{
+  "name": "cf7-datetime-addon",
+  "version": "1.0.0",
+  "description": "Contact Form 7 DateTime Addon - Modern date, time, and datetime picker form tags",
+  "main": "cf7-datetime-addon.php",
+  "scripts": {
+    "build": "echo 'No build process needed - assets are pre-compiled'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting configured'"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "contact-form-7",
+    "datetime-picker",
+    "date-picker",
+    "time-picker"
+  ],
+  "author": "Tyler Robinson",
+  "license": "GPL-2.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tylerdrobinson/cf7-datetime-addon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tylerdrobinson/cf7-datetime-addon/issues"
+  },
+  "homepage": "https://wordpress.org/plugins/cf7-datetime-addon/"
+}
+
