@@ -4,7 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://github.com/tylerdrobinson/cf7-datetime-addon
- * @since      1.0.0
+ * @since      1.0.2
  *
  * @package    CF7_DateTime_Addon
  * @subpackage CF7_DateTime_Addon/admin
@@ -25,7 +25,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * The ID of this plugin.
      *
-     * @since  1.0.0
+     * @since  1.0.2
      * @access private
      * @var    string $plugin_name The ID of this plugin.
      */
@@ -34,7 +34,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * The version of this plugin.
      *
-     * @since  1.0.0
+     * @since  1.0.2
      * @access private
      * @var    string $version The current version of this plugin.
      */
@@ -43,7 +43,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * Initialize the class and set its properties.
      *
-     * @since 1.0.0
+     * @since 1.0.2
      * @param string $plugin_name The name of this plugin.
      * @param string $version     The version of this plugin.
      */
@@ -57,7 +57,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * Register the stylesheets for the admin area.
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function enqueue_styles() {
         // Admin styles are not needed for this plugin
@@ -69,7 +69,7 @@ class CF7_DateTime_Addon_Admin {
      *
      * Only loads on CF7 admin pages where tag generators are needed.
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function enqueue_scripts() {
         // Admin scripts are not needed for this plugin
@@ -79,7 +79,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * Register CF7 tag generators
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function register_tag_generators() {
         // Check if CF7 is active and tag generator class exists
@@ -108,7 +108,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * Add plugin admin menu
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function add_plugin_admin_menu() {
         add_submenu_page(
@@ -124,7 +124,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * Register settings
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function register_settings() {
         register_setting(
@@ -141,7 +141,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * Sanitize the time format setting
      *
-     * @since 1.0.0
+     * @since 1.0.2
      * @param string $value The value to sanitize.
      * @return string The sanitized value.
      */
@@ -152,7 +152,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * Display the plugin setup page
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function display_plugin_setup_page() {
         if ( ! current_user_can( 'manage_options' ) ) {
@@ -212,7 +212,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * Time picker tag generator callback
      *
-     * @since 1.0.0
+     * @since 1.0.2
      * @param WPCF7_ContactForm $contact_form The contact form object.
      * @param array             $options       The options array.
      */
@@ -309,7 +309,7 @@ class CF7_DateTime_Addon_Admin {
     /**
      * DateTime picker tag generator callback
      *
-     * @since 1.0.0
+     * @since 1.0.2
      * @param WPCF7_ContactForm $contact_form The contact form object.
      * @param array             $options       The options array.
      */

@@ -4,7 +4,7 @@
  * The public-facing functionality of the plugin.
  *
  * @link       https://github.com/tylerdrobinson/cf7-datetime-addon
- * @since      1.0.0
+ * @since      1.0.2
  *
  * @package    CF7_DateTime_Addon
  * @subpackage CF7_DateTime_Addon/public
@@ -25,7 +25,7 @@ class CF7_DateTime_Addon_Public {
     /**
      * The ID of this plugin.
      *
-     * @since  1.0.0
+     * @since  1.0.2
      * @access private
      * @var    string $plugin_name The ID of this plugin.
      */
@@ -34,7 +34,7 @@ class CF7_DateTime_Addon_Public {
     /**
      * The version of this plugin.
      *
-     * @since  1.0.0
+     * @since  1.0.2
      * @access private
      * @var    string $version The current version of this plugin.
      */
@@ -43,7 +43,7 @@ class CF7_DateTime_Addon_Public {
     /**
      * Initialize the class and set its properties.
      *
-     * @since 1.0.0
+     * @since 1.0.2
      * @param string $plugin_name The name of this plugin.
      * @param string $version     The version of this plugin.
      */
@@ -60,7 +60,7 @@ class CF7_DateTime_Addon_Public {
      * Note: Actual enqueuing is handled by enqueue_datetime_assets() method
      * to ensure proper CF7 dependency loading.
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function enqueue_styles() {
         // Assets are enqueued conditionally in enqueue_datetime_assets()
@@ -72,7 +72,7 @@ class CF7_DateTime_Addon_Public {
      * Note: Actual enqueuing is handled by enqueue_datetime_assets() method
      * to ensure proper CF7 dependency loading.
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function enqueue_scripts() {
         // Assets are enqueued conditionally in enqueue_datetime_assets()
@@ -81,7 +81,7 @@ class CF7_DateTime_Addon_Public {
     /**
      * Register Contact Form 7 form tags
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function register_form_tags() {
         // Check if CF7 is active
@@ -117,7 +117,7 @@ class CF7_DateTime_Addon_Public {
     /**
      * Render the timepicker form tag
      *
-     * @since 1.0.0
+     * @since 1.0.2
      * @param WPCF7_FormTag $tag The form tag object.
      * @return string The rendered HTML.
      */
@@ -181,7 +181,7 @@ class CF7_DateTime_Addon_Public {
     /**
      * Render the datetimepicker form tag
      *
-     * @since 1.0.0
+     * @since 1.0.2
      * @param WPCF7_FormTag $tag The form tag object.
      * @return string The rendered HTML.
      */
@@ -246,7 +246,7 @@ class CF7_DateTime_Addon_Public {
     /**
      * Validate the timepicker field
      *
-     * @since 1.0.0
+     * @since 1.0.2
      * @param WPCF7_Validation $result The validation result object.
      * @param WPCF7_FormTag    $tag    The form tag object.
      * @return WPCF7_Validation The validation result.
@@ -278,7 +278,7 @@ class CF7_DateTime_Addon_Public {
     /**
      * Validate the datetimepicker field
      *
-     * @since 1.0.0
+     * @since 1.0.2
      * @param WPCF7_Validation $result The validation result object.
      * @param WPCF7_FormTag    $tag    The form tag object.
      * @return WPCF7_Validation The validation result.
@@ -310,7 +310,7 @@ class CF7_DateTime_Addon_Public {
     /**
      * Enqueue datetime picker assets
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function enqueue_datetime_assets() {
         // Only load if CF7 assets are being loaded

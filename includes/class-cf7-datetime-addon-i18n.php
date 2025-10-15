@@ -7,7 +7,7 @@
  * so that it is ready for translation.
  *
  * @link       https://github.com/tylerdrobinson/cf7-datetime-addon
- * @since      1.0.0
+ * @since      1.0.2
  *
  * @package    CF7_DateTime_Addon
  * @subpackage CF7_DateTime_Addon/includes
@@ -19,7 +19,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @since      1.0.0
+ * @since      1.0.2
  * @package    CF7_DateTime_Addon
  * @subpackage CF7_DateTime_Addon/includes
  * @author     Tyler Robinson
@@ -30,7 +30,7 @@ class CF7_DateTime_Addon_i18n {
     /**
      * Load the plugin text domain for translation.
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public function load_plugin_textdomain() {
 

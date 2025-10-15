@@ -4,7 +4,7 @@ Tags: contact form 7, datetime picker, date picker, time picker, form fields, cf
 Requires at least: 5.0
 Tested up to: 6.1.2
 Requires PHP: 7.2
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ Yes, it's fully responsive and uses touch-friendly controls.
 
 == Changelog ==
 
+= 1.0.2 =
+* Bug fixes and improvements
+
 = 1.0.0 =
 * Initial release with three picker types: date, time, and datetime
 * CF7 form tag generators for Date picker, Time picker, and DateTime picker
@@ -109,6 +112,9 @@ Yes, it's fully responsive and uses touch-friendly controls.
 * Individual validation for each picker type
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+Bug fixes and improvements.
 
 = 1.0.0 =
 Initial release of CF7 DateTime Addon with modern date and time picker functionality.

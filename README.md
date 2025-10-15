@@ -8,7 +8,7 @@
 **Requires at least:** WordPress 5.0
 **Tested up to:** WordPress 6.1.2
 **Requires PHP:** 7.2
-**Stable tag:** 1.0.0
+**Stable tag:** 1.0.2
 **License:** GPLv2 or later
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -230,7 +230,10 @@ A: The plugin stores values in the format expected by HTML5 datetime-local (loca
 
 ## 📈 Changelog
 
-### 1.0.0 (Current)
+### 1.0.2 (Current)
+- Bug fixes and improvements
+
+### 1.0.0
 - Initial release with three picker types: date, time, and datetime
 - CF7 form tag generators for Date picker, Time picker, and DateTime picker
 - Flatpickr integration for enhanced UX

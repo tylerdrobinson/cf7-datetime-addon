@@ -5,7 +5,7 @@
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      1.0.0
+ * @since      1.0.2
  * @package    CF7_DateTime_Addon
  * @subpackage CF7_DateTime_Addon/includes
  * @author     Tyler Robinson
@@ -17,7 +17,7 @@ class CF7_DateTime_Addon_Activator {
      *
      * Long Description.
      *
-     * @since 1.0.0
+     * @since 1.0.2
      */
     public static function activate() {
         // Check if Contact Form 7 is active
