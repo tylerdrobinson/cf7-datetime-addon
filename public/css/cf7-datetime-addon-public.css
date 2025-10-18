@@ -130,7 +130,8 @@
 .wpcf7-form .rd-field input[type="url"],
 .wpcf7-form .rd-field .wpcf7-datepicker,
 .wpcf7-form .rd-field .wpcf7-timepicker,
-.wpcf7-form .rd-field .wpcf7-datetimepicker {
+.wpcf7-form .rd-field .wpcf7-datetimepicker,
+.wpcf7-form .rd-field .flatpickr-input {
   width: 100%;
   font-size: 1rem;           /* 16px base */
   line-height: 1.4;
@@ -145,11 +146,13 @@
   box-sizing: border-box;
 }
 
-.wpcf7-form .rd-field input::placeholder {
+.wpcf7-form .rd-field input::placeholder,
+.wpcf7-form .rd-field .flatpickr-input::placeholder {
   color: #9ca3af;
 }
 
-.wpcf7-form .rd-field input:focus {
+.wpcf7-form .rd-field input:focus,
+.wpcf7-form .rd-field .flatpickr-input:focus {
   outline: none;
   border-color: #1F3B2A;
   box-shadow: 0 0 0 4px rgba(31,59,42,.12);

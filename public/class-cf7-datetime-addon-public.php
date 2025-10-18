@@ -127,6 +127,8 @@ class CF7_DateTime_Addon_Public {
         }
 
         $tag = new WPCF7_FormTag( $tag );
+        error_log('CF7 DateTime: TIME render_timepicker called for: ' . $tag->name);
+        error_log('CF7 DateTime: TIME tag content: ' . $tag->content);
 
         // Base classes
         $classes = wpcf7_form_controls_class( $tag->type );
@@ -153,18 +155,32 @@ class CF7_DateTime_Addon_Public {
             'data-time' => '1',
         );
 
-        // Handle placeholder - don't set it directly to avoid browser validation errors
-        $placeholder = $tag->get_option('placeholder', '', true);
+        // Handle placeholder - extract directly from tag content
+        $placeholder = '';
+        // Get the original tag content from CF7's internal storage
+        $tag_content = $tag->content;
+        error_log('CF7 DateTime: TIME tag content: ' . $tag_content);
+
+        // Extract placeholder from the tag content using regex
+        if (preg_match('/placeholder\s*"([^"]*)"/', $tag_content, $matches)) {
+            $placeholder = $matches[1];
+            error_log('CF7 DateTime: TIME extracted placeholder: ' . $placeholder);
+        }
+
         if ($placeholder) {
             $atts['data-placeholder'] = $placeholder;
+            error_log('CF7 DateTime: TIME Set data-placeholder to: ' . $placeholder);
         }
+
+        // CRITICAL: Do NOT set placeholder attribute - Flatpickr treats it as initial value
+        // We handle placeholder setting in JavaScript after Flatpickr initializes
 
         if ( $tag->is_required() ) {
             $atts['aria-required'] = 'true';
             $atts['required'] = 'required';
         }
 
-        // Default value
+        // Default value - but don't set placeholder text as value
         $value = $tag->get_default_option( null );
         if ( ! $value ) {
             $vals = (array) $tag->values;
@@ -172,9 +188,9 @@ class CF7_DateTime_Addon_Public {
                 $value = reset( $vals );
             }
         }
-        if ( $value ) {
-            $atts['value'] = esc_attr( $value );
-        }
+
+        // NEVER set value attribute for datetime/time inputs - Flatpickr handles values
+        // This prevents placeholder text from being set as initial values
 
         // Build attributes
         $attr_html = '';
@@ -204,6 +220,7 @@ class CF7_DateTime_Addon_Public {
         }
 
         $tag = new WPCF7_FormTag( $tag );
+        error_log('CF7 DateTime: DATETIME render_datetimepicker called for: ' . $tag->name);
 
         // Base classes
         $classes = wpcf7_form_controls_class( $tag->type );
@@ -230,18 +247,32 @@ class CF7_DateTime_Addon_Public {
             'data-date-time' => '1',
         );
 
-        // Handle placeholder - don't set it directly to avoid browser validation errors
-        $placeholder = $tag->get_option('placeholder', '', true);
+        // Handle placeholder - extract directly from tag content
+        $placeholder = '';
+        // Get the original tag content from CF7's internal storage
+        $tag_content = $tag->content;
+        error_log('CF7 DateTime: DATETIME tag content: ' . $tag_content);
+
+        // Extract placeholder from the tag content using regex
+        if (preg_match('/placeholder\s*"([^"]*)"/', $tag_content, $matches)) {
+            $placeholder = $matches[1];
+            error_log('CF7 DateTime: DATETIME extracted placeholder: ' . $placeholder);
+        }
+
         if ($placeholder) {
             $atts['data-placeholder'] = $placeholder;
+            error_log('CF7 DateTime: DATETIME Set data-placeholder to: ' . $placeholder);
         }
+
+        // CRITICAL: Do NOT set placeholder attribute - Flatpickr treats it as initial value
+        // We handle placeholder setting in JavaScript after Flatpickr initializes
 
         if ( $tag->is_required() ) {
             $atts['aria-required'] = 'true';
             $atts['required'] = 'required';
         }
 
-        // Default value
+        // Default value - but don't set placeholder text as value
         $value = $tag->get_default_option( null );
         if ( ! $value ) {
             $vals = (array) $tag->values;
@@ -249,9 +280,9 @@ class CF7_DateTime_Addon_Public {
                 $value = reset( $vals );
             }
         }
-        if ( $value ) {
-            $atts['value'] = esc_attr( $value );
-        }
+
+        // NEVER set value attribute for datetime/time inputs - Flatpickr handles values
+        // This prevents placeholder text from being set as initial values
 
         // Build attributes
         $attr_html = '';

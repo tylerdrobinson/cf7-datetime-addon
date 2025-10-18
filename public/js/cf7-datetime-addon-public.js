@@ -1,4 +1,13 @@
 (function() {
+  // Prevent Flatpickr auto-initialization on our inputs
+  if (typeof flatpickr !== 'undefined') {
+    flatpickr.defaultConfig.disable = [
+      function(instance) {
+        return instance.element && (instance.element.hasAttribute('data-time') || instance.element.hasAttribute('data-date-time'));
+      }
+    ];
+  }
+
   function initCF7DateTimePickers(root) {
     // Handle all picker types
     var timeInputs = (root || document).querySelectorAll('.wpcf7 form input[data-time]');
@@ -13,14 +22,22 @@
       // Debug logging
       console.log('CF7 DateTime: Initializing time picker', el);
 
-      // Set placeholder before Flatpickr initializes to avoid browser validation errors
       var placeholder = el.getAttribute('data-placeholder');
       console.log('CF7 DateTime: Time placeholder from data-placeholder:', placeholder);
-      if (placeholder && !el.value) {
-        // Remove any placeholder that CF7 might have set
-        el.removeAttribute('placeholder');
-        el.setAttribute('placeholder', placeholder);
-        console.log('CF7 DateTime: Set placeholder to:', placeholder);
+
+      // Fallback: use default placeholders if not found
+      if (!placeholder) {
+        placeholder = 'Choose time';
+        console.log('CF7 DateTime: Using fallback placeholder:', placeholder);
+      }
+
+      // Clear placeholder values that CF7 might have set
+      console.log('CF7 DateTime: TIME Current el.value:', '"' + el.value + '"', 'placeholder:', '"' + placeholder + '"');
+      if (placeholder && el.value === placeholder) {
+        el.value = '';
+        console.log('CF7 DateTime: TIME Cleared placeholder value from hidden input');
+      } else {
+        console.log('CF7 DateTime: TIME Value does not match placeholder, not clearing');
       }
 
       flatpickr(el, {
@@ -31,7 +48,15 @@
         minuteIncrement: (function(){
           var step = parseInt(el.getAttribute('step') || ((typeof cf7_datetime_settings !== 'undefined' && cf7_datetime_settings.default_interval) ? cf7_datetime_settings.default_interval * 60 : '300'), 10); // seconds
           return Math.max(1, Math.round(step / 60));
-        })()
+        })(),
+        altInput: true,
+        altFormat: "h:i K",
+        onReady: function(selectedDates, dateStr, instance) {
+          if (placeholder && !dateStr) {
+            instance.altInput.setAttribute('placeholder', placeholder);
+            console.log('CF7 DateTime: Set alt input placeholder to:', placeholder);
+          }
+        }
       });
 
       el.dataset.fpEnhanced = '1';
@@ -44,14 +69,23 @@
       // Debug logging
       console.log('CF7 DateTime: Initializing datetime picker', el);
 
-      // Set placeholder before Flatpickr initializes to avoid browser validation errors
       var placeholder = el.getAttribute('data-placeholder');
       console.log('CF7 DateTime: Datetime placeholder from data-placeholder:', placeholder);
-      if (placeholder && !el.value) {
-        // Remove any placeholder that CF7 might have set
-        el.removeAttribute('placeholder');
-        el.setAttribute('placeholder', placeholder);
-        console.log('CF7 DateTime: Set placeholder to:', placeholder);
+
+      // Fallback: use default placeholders if not found
+      if (!placeholder) {
+        placeholder = 'Choose date and time';
+        console.log('CF7 DateTime: Using fallback placeholder:', placeholder);
+      }
+
+      // Clear placeholder values that CF7 might have set
+      console.log('CF7 DateTime: DATETIME Current el.value:', '"' + el.value + '"', '(length:', el.value.length + ')', 'placeholder:', '"' + placeholder + '"', '(length:', placeholder.length + ')');
+      console.log('CF7 DateTime: DATETIME Comparison:', el.value === placeholder);
+      if (placeholder && el.value === placeholder) {
+        el.value = '';
+        console.log('CF7 DateTime: DATETIME Cleared placeholder value from hidden input');
+      } else {
+        console.log('CF7 DateTime: DATETIME Value does not match placeholder, not clearing');
       }
 
       flatpickr(el, {
@@ -62,7 +96,15 @@
         minuteIncrement: (function(){
           var step = parseInt(el.getAttribute('step') || ((typeof cf7_datetime_settings !== 'undefined' && cf7_datetime_settings.default_interval) ? cf7_datetime_settings.default_interval * 60 : '300'), 10); // seconds
           return Math.max(1, Math.round(step / 60));
-        })()
+        })(),
+        altInput: true,
+        altFormat: "M j, Y at h:i K",
+        onReady: function(selectedDates, dateStr, instance) {
+          if (placeholder && !dateStr) {
+            instance.altInput.setAttribute('placeholder', placeholder);
+            console.log('CF7 DateTime: Set alt input placeholder to:', placeholder);
+          }
+        }
       });
 
       el.dataset.fpEnhanced = '1';
