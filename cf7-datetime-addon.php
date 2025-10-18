@@ -3,7 +3,7 @@
  * Plugin Name:       CF7 DateTime Addon
  * Plugin URI:        https://github.com/tylerdrobinson/cf7-datetime-addon
  * Description:       Adds modern date and time picker form tags to Contact Form 7 with Flatpickr enhancement and admin settings.
- * Version:           1.0.2
+ * Version:           1.0.4
  * Author:            Tyler Robinson
  * Author URI:        https://github.com/tylerdrobinson
  * License:           GPL-2.0+
@@ -28,7 +28,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.2 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'CF7_DATETIME_ADDON_VERSION', '1.0.2' );
+define( 'CF7_DATETIME_ADDON_VERSION', '1.0.4' );
 
 /**
  * The code that runs during plugin activation.

@@ -57,13 +57,13 @@ class CF7_DateTime_Addon_Public {
     /**
      * Register the stylesheets for the public-facing side of the site.
      *
-     * Note: Actual enqueuing is handled by enqueue_datetime_assets() method
-     * to ensure proper CF7 dependency loading.
+     * Note: CSS styling should be handled by the theme. Only Flatpickr CSS
+     * is enqueued for proper date picker functionality.
      *
      * @since 1.0.2
      */
     public function enqueue_styles() {
-        // Assets are enqueued conditionally in enqueue_datetime_assets()
+        // CSS is handled by the theme - only Flatpickr is enqueued
     }
 
     /**
@@ -93,21 +93,21 @@ class CF7_DateTime_Addon_Public {
         wpcf7_add_form_tag(
             array( 'time', 'time*' ),
             array( $this, 'render_timepicker' ),
-            array( 'name-attr' => true, 'do-not-store' => false )
+            array( 'name-attr' => true )
         );
 
         // Register the date-time picker form tag
         wpcf7_add_form_tag(
-            array( 'date-time', 'date-time*' ),
+            array( 'datetime', 'datetime*' ),
             array( $this, 'render_datetimepicker' ),
-            array( 'name-attr' => true, 'do-not-store' => false )
+            array( 'name-attr' => true )
         );
 
         // Server-side validation for all picker types
         add_filter( 'wpcf7_validate_time', array( $this, 'validate_time' ), 10, 2 );
         add_filter( 'wpcf7_validate_time*', array( $this, 'validate_time' ), 10, 2 );
-        add_filter( 'wpcf7_validate_date-time', array( $this, 'validate_date_time' ), 10, 2 );
-        add_filter( 'wpcf7_validate_date-time*', array( $this, 'validate_date_time' ), 10, 2 );
+        add_filter( 'wpcf7_validate_datetime', array( $this, 'validate_date_time' ), 10, 2 );
+        add_filter( 'wpcf7_validate_datetime*', array( $this, 'validate_date_time' ), 10, 2 );
 
         // Enqueue assets only when CF7 is present
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_datetime_assets' ) );
@@ -137,12 +137,19 @@ class CF7_DateTime_Addon_Public {
             $classes .= ' ' . sanitize_html_class( $cl );
         }
 
+        // Get interval option or use default
+        $interval = $tag->get_option('interval', 'int', true);
+        if (!$interval) {
+            $interval = get_option('cf7_datetime_default_interval', 5);
+        }
+
         $atts = array(
             'class'       => $classes,
             'id'          => $tag->get_id_option(),
             'name'        => $tag->name,
             'type'        => 'time',
             'inputmode'   => 'numeric',
+            'step'        => $interval * 60, // Convert minutes to seconds
             'data-time' => '1',
         );
 
@@ -201,12 +208,19 @@ class CF7_DateTime_Addon_Public {
             $classes .= ' ' . sanitize_html_class( $cl );
         }
 
+        // Get interval option or use default
+        $interval = $tag->get_option('interval', 'int', true);
+        if (!$interval) {
+            $interval = get_option('cf7_datetime_default_interval', 5);
+        }
+
         $atts = array(
             'class'       => $classes,
             'id'          => $tag->get_id_option(),
             'name'        => $tag->name,
             'type'        => 'datetime-local',
             'inputmode'   => 'numeric',
+            'step'        => $interval * 60, // Convert minutes to seconds
             'data-date-time' => '1',
         );
 
@@ -298,8 +312,8 @@ class CF7_DateTime_Addon_Public {
             return $result; // Optional & empty → OK
         }
 
-        // Must be in datetime-local format (YYYY-MM-DDTHH:MM)
-        if ( ! preg_match( '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/', $value ) ) {
+        // Must be in datetime format (YYYY-MM-DD HH:MM)
+        if ( ! preg_match( '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/', $value ) ) {
             $result->invalidate( $tag, __( 'Please enter a valid date and time.', 'cf7-datetime-addon' ) );
             return $result;
         }
@@ -334,15 +348,7 @@ class CF7_DateTime_Addon_Public {
             true
         );
 
-        // Plugin styles and scripts
-        wp_register_style(
-            'cf7-datetime-addon-public',
-            plugin_dir_url( __FILE__ ) . 'css/cf7-datetime-addon-public.css',
-            array( 'flatpickr' ),
-            $this->version,
-            'all'
-        );
-
+        // Plugin scripts only (CSS should be added to theme)
         wp_register_script(
             'cf7-datetime-addon-public',
             plugin_dir_url( __FILE__ ) . 'js/cf7-datetime-addon-public.js',
@@ -353,15 +359,18 @@ class CF7_DateTime_Addon_Public {
 
         // Pass settings to JavaScript
         $time_format = get_option( 'cf7_datetime_time_format', '12' );
+        $default_interval = get_option( 'cf7_datetime_default_interval', 5 );
         wp_localize_script(
             'cf7-datetime-addon-public',
             'cf7_datetime_settings',
-            array( 'time_format' => $time_format )
+            array(
+                'time_format' => $time_format,
+                'default_interval' => $default_interval
+            )
         );
 
         // Enqueue assets
         wp_enqueue_style( 'flatpickr' );
-        wp_enqueue_style( 'cf7-datetime-addon-public' );
         wp_enqueue_script( 'flatpickr' );
         wp_enqueue_script( 'cf7-datetime-addon-public' );
     }

@@ -70,7 +70,7 @@ class CF7_DateTime_Addon {
         if ( defined( 'CF7_DATETIME_ADDON_VERSION' ) ) {
             $this->version = CF7_DATETIME_ADDON_VERSION;
         } else {
-            $this->version = '1.0.2';
+            $this->version = '1.0.4';
         }
         $this->plugin_name = 'cf7-datetime-addon';
 
@@ -172,7 +172,7 @@ class CF7_DateTime_Addon {
 
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-        $this->loader->add_action( 'init', $plugin_public, 'register_form_tags' );
+        $this->loader->add_action( 'wpcf7_init', $plugin_public, 'register_form_tags', 20 );
 
     }
 

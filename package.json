@@ -1,6 +1,6 @@
 {
   "name": "cf7-datetime-addon",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Contact Form 7 DateTime Addon - Modern date, time, and datetime picker form tags",
   "main": "cf7-datetime-addon.php",
   "scripts": {

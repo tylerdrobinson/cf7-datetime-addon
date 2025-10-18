@@ -71,7 +71,7 @@ npm run build
 composer install --no-dev --optimize-autoloader
 
 # Create the ZIP (replace VERSION with actual version)
-VERSION="1.0.2"
+VERSION="1.0.4"
 zip -r "cf7-datetime-addon-${VERSION}.zip" . -x@.distignore
 ```
 

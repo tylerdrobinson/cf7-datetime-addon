@@ -98,8 +98,8 @@ class CF7_DateTime_Addon_Admin {
 
         // Register date-time picker tag generator
         $tag_generator->add(
-            'date-time',
-            __('date-time', 'cf7-datetime-addon'),
+            'datetime',
+            __('datetime', 'cf7-datetime-addon'),
             array($this, 'tag_generator_date_time'),
             array('version' => '2')
         );
@@ -136,6 +136,16 @@ class CF7_DateTime_Addon_Admin {
                 'sanitize_callback' => array( $this, 'sanitize_time_format' )
             )
         );
+
+        register_setting(
+            'cf7_datetime_settings',
+            'cf7_datetime_default_interval',
+            array(
+                'type' => 'integer',
+                'default' => 5,
+                'sanitize_callback' => array( $this, 'sanitize_default_interval' )
+            )
+        );
     }
 
     /**
@@ -147,6 +157,18 @@ class CF7_DateTime_Addon_Admin {
      */
     public function sanitize_time_format( $value ) {
         return in_array( $value, array( '12', '24' ), true ) ? $value : '12';
+    }
+
+    /**
+     * Sanitize the default interval setting
+     *
+     * @since 1.0.3
+     * @param mixed $value The value to sanitize.
+     * @return int The sanitized value.
+     */
+    public function sanitize_default_interval( $value ) {
+        $int_value = (int) $value;
+        return max(1, min(60, $int_value)); // Between 1 and 60 minutes
     }
 
     /**
@@ -198,6 +220,15 @@ class CF7_DateTime_Addon_Admin {
                                     <span><?php esc_html_e( '24-hour format', 'cf7-datetime-addon' ); ?></span>
                                 </label>
                             </fieldset>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><?php esc_html_e( 'Default Time Interval', 'cf7-datetime-addon' ); ?></th>
+                        <td>
+                            <input type="number" name="cf7_datetime_default_interval" min="1" max="60" step="1"
+                                value="<?php echo esc_attr( get_option( 'cf7_datetime_default_interval', '5' ) ); ?>" />
+                            <span><?php esc_html_e( 'minutes', 'cf7-datetime-addon' ); ?></span>
+                            <p class="description"><?php esc_html_e( 'Default time interval for picker controls. Can be overridden per form field using the interval option.', 'cf7-datetime-addon' ); ?></p>
                         </td>
                     </tr>
                 </table>
@@ -315,7 +346,7 @@ class CF7_DateTime_Addon_Admin {
      */
     public function tag_generator_date_time($contact_form, $options) {
         $field_types = array(
-            'date-time' => array(
+            'datetime' => array(
                 'display_name' => __('Date-Time picker', 'cf7-datetime-addon'),
                 'heading' => __('Date-Time picker form-tag generator', 'cf7-datetime-addon'),
                 'description' => __('Generates a form-tag for a date and time picker field.', 'cf7-datetime-addon'),
@@ -325,7 +356,7 @@ class CF7_DateTime_Addon_Admin {
         $basetype = $options['id'];
 
         if ( ! in_array( $basetype, array_keys( $field_types ), true ) ) {
-            $basetype = 'date-time';
+            $basetype = 'datetime';
         }
 
         $tgg = new WPCF7_TagGeneratorGenerator( $options['content'] );

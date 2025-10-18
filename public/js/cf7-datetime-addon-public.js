@@ -16,7 +16,7 @@
         dateFormat: "H:i",
         time_24hr: (typeof cf7_datetime_settings !== 'undefined' && cf7_datetime_settings.time_format === '24'),
         minuteIncrement: (function(){
-          var step = parseInt(el.getAttribute('step') || '300', 10); // seconds
+          var step = parseInt(el.getAttribute('step') || ((typeof cf7_datetime_settings !== 'undefined' && cf7_datetime_settings.default_interval) ? cf7_datetime_settings.default_interval * 60 : '300'), 10); // seconds
           return Math.max(1, Math.round(step / 60));
         })(),
         onReady: function(selectedDates, dateStr, instance) {
@@ -40,7 +40,7 @@
         dateFormat: "Y-m-d H:i",
         time_24hr: (typeof cf7_datetime_settings !== 'undefined' && cf7_datetime_settings.time_format === '24'),
         minuteIncrement: (function(){
-          var step = parseInt(el.getAttribute('step') || '300', 10); // seconds
+          var step = parseInt(el.getAttribute('step') || ((typeof cf7_datetime_settings !== 'undefined' && cf7_datetime_settings.default_interval) ? cf7_datetime_settings.default_interval * 60 : '300'), 10); // seconds
           return Math.max(1, Math.round(step / 60));
         })(),
         onReady: function(selectedDates, dateStr, instance) {
