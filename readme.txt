@@ -4,7 +4,7 @@ Tags: contact form 7, datetime picker, time picker, form fields, cf7
 Requires at least: 5.0
 Tested up to: 6.1.2
 Requires PHP: 7.2
-Stable tag: 1.0.5
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,9 +97,13 @@ Yes, it's fully responsive and uses touch-friendly controls.
 
 == Changelog ==
 
-= 1.0.5 =
-* Fixed placeholder handling to prevent browser validation errors on datetime and time fields
-* Improved JavaScript initialization to set placeholders before Flatpickr loads
+= 1.1.1 =
+* Complete fix for browser validation errors on datetime and time fields
+* Implemented Flatpickr altInput feature to separate display from actual values
+* Eliminated 'does not conform to required format' console warnings
+* Fixed Flatpickr parsing errors for placeholder text
+* Enhanced CSS support for flatpickr-input elements
+* Maintained full backward compatibility
 
 = 1.0.4 =
 * Added default time interval setting in admin panel
@@ -126,8 +130,8 @@ Yes, it's fully responsive and uses touch-friendly controls.
 
 == Upgrade Notice ==
 
-= 1.0.5 =
-Fixes browser validation errors with datetime and time field placeholders.
+= 1.1.1 =
+Complete fix for browser validation errors on datetime and time fields. Eliminates console warnings and enables proper form submission.
 
 = 1.0.4 =
 Added default time interval setting and enhanced interval controls.
