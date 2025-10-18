@@ -10,10 +10,17 @@
     timeInputs.forEach(function(el) {
       if (el.dataset.fpEnhanced) return;
 
+      // Debug logging
+      console.log('CF7 DateTime: Initializing time picker', el);
+
       // Set placeholder before Flatpickr initializes to avoid browser validation errors
       var placeholder = el.getAttribute('data-placeholder');
+      console.log('CF7 DateTime: Time placeholder from data-placeholder:', placeholder);
       if (placeholder && !el.value) {
+        // Remove any placeholder that CF7 might have set
+        el.removeAttribute('placeholder');
         el.setAttribute('placeholder', placeholder);
+        console.log('CF7 DateTime: Set placeholder to:', placeholder);
       }
 
       flatpickr(el, {
@@ -34,10 +41,17 @@
     dateTimeInputs.forEach(function(el) {
       if (el.dataset.fpEnhanced) return;
 
+      // Debug logging
+      console.log('CF7 DateTime: Initializing datetime picker', el);
+
       // Set placeholder before Flatpickr initializes to avoid browser validation errors
       var placeholder = el.getAttribute('data-placeholder');
+      console.log('CF7 DateTime: Datetime placeholder from data-placeholder:', placeholder);
       if (placeholder && !el.value) {
+        // Remove any placeholder that CF7 might have set
+        el.removeAttribute('placeholder');
         el.setAttribute('placeholder', placeholder);
+        console.log('CF7 DateTime: Set placeholder to:', placeholder);
       }
 
       flatpickr(el, {
