@@ -153,6 +153,12 @@ class CF7_DateTime_Addon_Public {
             'data-time' => '1',
         );
 
+        // Handle placeholder - don't set it directly to avoid browser validation errors
+        $placeholder = $tag->get_option('placeholder', '', true);
+        if ($placeholder) {
+            $atts['data-placeholder'] = $placeholder;
+        }
+
         if ( $tag->is_required() ) {
             $atts['aria-required'] = 'true';
             $atts['required'] = 'required';
@@ -223,6 +229,12 @@ class CF7_DateTime_Addon_Public {
             'step'        => $interval * 60, // Convert minutes to seconds
             'data-date-time' => '1',
         );
+
+        // Handle placeholder - don't set it directly to avoid browser validation errors
+        $placeholder = $tag->get_option('placeholder', '', true);
+        if ($placeholder) {
+            $atts['data-placeholder'] = $placeholder;
+        }
 
         if ( $tag->is_required() ) {
             $atts['aria-required'] = 'true';

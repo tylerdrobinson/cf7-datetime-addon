@@ -10,6 +10,12 @@
     timeInputs.forEach(function(el) {
       if (el.dataset.fpEnhanced) return;
 
+      // Set placeholder before Flatpickr initializes to avoid browser validation errors
+      var placeholder = el.getAttribute('data-placeholder');
+      if (placeholder && !el.value) {
+        el.setAttribute('placeholder', placeholder);
+      }
+
       flatpickr(el, {
         enableTime: true,
         noCalendar: true,
@@ -18,13 +24,7 @@
         minuteIncrement: (function(){
           var step = parseInt(el.getAttribute('step') || ((typeof cf7_datetime_settings !== 'undefined' && cf7_datetime_settings.default_interval) ? cf7_datetime_settings.default_interval * 60 : '300'), 10); // seconds
           return Math.max(1, Math.round(step / 60));
-        })(),
-        onReady: function(selectedDates, dateStr, instance) {
-          var ph = el.getAttribute('data-placeholder');
-          if (ph && !dateStr) {
-            instance.input.setAttribute('placeholder', ph);
-          }
-        }
+        })()
       });
 
       el.dataset.fpEnhanced = '1';
@@ -34,6 +34,12 @@
     dateTimeInputs.forEach(function(el) {
       if (el.dataset.fpEnhanced) return;
 
+      // Set placeholder before Flatpickr initializes to avoid browser validation errors
+      var placeholder = el.getAttribute('data-placeholder');
+      if (placeholder && !el.value) {
+        el.setAttribute('placeholder', placeholder);
+      }
+
       flatpickr(el, {
         enableTime: true,
         noCalendar: false,
@@ -42,13 +48,7 @@
         minuteIncrement: (function(){
           var step = parseInt(el.getAttribute('step') || ((typeof cf7_datetime_settings !== 'undefined' && cf7_datetime_settings.default_interval) ? cf7_datetime_settings.default_interval * 60 : '300'), 10); // seconds
           return Math.max(1, Math.round(step / 60));
-        })(),
-        onReady: function(selectedDates, dateStr, instance) {
-          var ph = el.getAttribute('data-placeholder');
-          if (ph && !dateStr) {
-            instance.input.setAttribute('placeholder', ph);
-          }
-        }
+        })()
       });
 
       el.dataset.fpEnhanced = '1';
